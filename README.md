@@ -90,10 +90,10 @@ All you need is to run the code and wait for the model to be trained.
 ## Training Graphs
 
 ### Accuracy Curves
-![accuracy](https://user-images.githubusercontent.com/41828100/235883903-35d46db9-1a78-44c0-979d-9a0a8d4d2f39.png)
+![accuracy](https://user-images.githubusercontent.com/41828100/235886440-d93c1838-1759-42b5-aab3-3cbfd0d63279.jpg)
 
 ### Loss Curves
-![loss](https://user-images.githubusercontent.com/41828100/235883932-4cb0fee9-a721-407c-ba42-aa5e5a92e079.png)
+![loss](https://user-images.githubusercontent.com/41828100/235886449-21a6750e-56a8-4113-9fa2-c173659d88e9.jpg)
 
 <a name="vis_res"></a>
 ## Visual Results
