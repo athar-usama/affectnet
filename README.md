@@ -8,59 +8,63 @@ Facial Expression Recognition (FER) and computing Valence &amp; Arousal through 
 4. [ Setup Instructions ](#setup)
 5. [ Usage Instructions ](#usage)
 6. [ Quantitative Results ](#quant_res)
-7. [ Visual Results ](#vis_res)
-8. [ Author ](#auth)
+7. [ Training Graphs ](#graphs)
+8. [ Visual Results ](#vis_res)
+9. [ Author ](#auth)
 
 <a name="abs"></a>
 ## Abstract
-An image classification approach using Bag of Visual Words with SIFT features and two classifiers, Support Vector Machine (SVM) and Random Forest. The purpose of this work is to compare the performance of both classifiers in classifying two datasets; objects_dataset & flowers_dataset. Experimental results demonstrate that both classifiers have decent accuracy in classifying images. The results also indicate that the performance of the classifiers is highly dependent on the choice of parameters as well as the feature extractor. Overall, the proposed approach shows promising results and can be used as a basis for more complex image classification tasks.
+This project focuses on developing a facial expression recognition system that can effectively detect and recognize expressions while also computing their valence and arousal values. The proposed system employs transfer learning, utilizing pre-trained convolutional neural network (CNN) models as a starting point to reduce the required training time and improve the system's performance. To evaluate the effectiveness of the proposed approach, several well-known CNN baselines were employed, including VGG19, ResNet152, EfficientNet, \& ConvNext. These models were fine-tuned and evaluated on the AffectNet dataset, which is a large-scale dataset of facial expressions annotated with valence and arousal labels. The dataset consists of over 280,000 images, including eight facial expression categories. The performance of the developed system was evaluated using several evaluation metrics, including, but not limited to, accuracy, F1-score, root mean square error (RMSE), AUC, \& Correlation. At the end, we also implemented a custom CNN architecture (CVNet) for a comparison with transfer learning from above-mentioned baselines.
 
 <a name="m_dig"></a>
 ## Methodology Diagram
-![methodology_diagram_2](https://user-images.githubusercontent.com/41828100/224599760-55d05b82-441c-44e5-9aa4-03dfcc501a04.png)
+![methodology diagram](https://user-images.githubusercontent.com/41828100/235878998-978072d8-3658-47fc-a5cc-6d40dcf52396.jpg)
 
 <a name="intro"></a>
 ## Introduction
-Image classification is a fundamental problem in computer vision that involves categorizing images into different classes or categories. The task of image classification has numerous applications in various fields such as medical diagnosis, object recognition, face recognition, and autonomous vehicles. In recent years, many approaches have been proposed for image classification, including deep learning-based approaches such as Convolutional Neural Networks (CNNs), which have shown remarkable performance in various tasks. However, these approaches require large amounts of data and computational resources to train and optimize the models.
+The report provides an overview of the AFFECT dataset and the task of recognizing facial expressions, valence, and arousal from facial images. Affective computing is a field that aims to develop devices that can recognize and simulate human emotions. Facial expressions are one of the most important nonverbal channels used by humans to convey their internal emotions. The dataset provided contains cropped and resized images along with the location of facial landmarks, categorical emotion labels, and continuous valence and arousal values.
 
-In this work, I proposed an image classification approach that uses Bag of Visual Words with SIFT features and two classifiers, Support Vector Machine (SVM) and Random Forest, to classify two datasets. The Bag of Visual Words (BoVW) is a popular feature extraction and representation method used in computer vision for image classification. BoVW divides an image into small regions and extracts relevant features from each region. The extracted features are then quantized into a predefined vocabulary of visual words, which are used to represent the image as a histogram. The BoVW method has been widely used in various image classification tasks, including object recognition and scene recognition.
+The report discusses the evaluation metrics used for categorical and continuous classification tasks, such as accuracy, F1-score, Cohen's kappa, area under curve (AUC), root mean square error (RMSE), correlation, sign agreement metric, and concordance correlation coefficient (CCC). The task is to use CNN architectures to recognize facial expressions, valence, and arousal from the given dataset. The report also emphasizes the use of best practices and modular implementation of the image classification pipeline.
 
-SIFT (Scale-Invariant Feature Transform) is a feature detector and descriptor commonly used in computer vision for extracting robust and invariant features from images.  SIFT algorithm extracts key points and descriptors from an image, which can be used for matching, object recognition, and image classification. SIFT is known for its robustness to changes in scale, rotation, and illumination, making it suitable for various visual classification tasks.
+Facial expressions are a critical aspect of human communication and can convey a wide range of emotions and affective states. The ability to recognize and interpret facial expressions can be important in various fields, such as psychology, medicine, and social robotics. Affective computing is a subfield of computer science that seeks to develop computational systems capable of recognizing, interpreting, and expressing emotions and affective states. The dimensional model of affect is a widely used approach in affective computing, which quantifies emotions in terms of two dimensions: valence and arousal. Valence refers to how positive or negative an event is, while arousal reflects whether an event is exciting/agitating or calm/soothing. The valence-arousal circumplex is a visual representation of this model, where emotions are plotted on a two-dimensional space defined by these values.
 
-I have also compared the performance of SVM and Random Forest classifiers in the given datasets using Bag of Visual Words. SVM is a popular machine learning that constructs a hyperplane separating the data into different classes by maximizing the margin between the hyperplane and the nearest data points of each class. Random Forest is an ensemble learning method which constructs multiple decision trees and combines their predictions to classify the data. Random Forest is known for its high accuracy and robustness to noise and outliers.
+Deep learning has shown promising results in various computer vision tasks, including facial expression recognition. Convolutional Neural Networks (CNNs) are a type of deep neural networks that are particularly well-suited for image classification tasks. Several CNN architectures have been proposed in recent years, such as VGG, ResNet, Inception, Xception, MobileNet, EfficientNet, SENet, and DenseNet. These architectures differ in terms of their depth, width, and complexity, and have achieved state-of-the-art performance on various classification benchmarks.
 
 <a name="setup"></a>
 ## Setup Instructions
 These are instructions for setting up the environment for running this code.
 
-The code performs image classification using Bag of Visual Words and SIFT features. It uses two datasets: objects dataset and flowers dataset. The classifiers used are Support Vector Machine (SVM) and Random Forest Classifier.
+The code performs facial expression recognition on the AffectNet dataset and computes valence and arousal values. The pretrained baselines used in this project are: VGG-19, ResNet-152, Swin-V2, EfficientNet, RegNet, and ConvNext.
 
 ### Requirements:
-To run this code, you will need:
+To run this code, you will need the following:
 
 1- Python</br>
 2- OpenCV</br>
-3- scikit-learn
+3- PyTorch</br>
+4- Pandas</br>
+5- scikit-learn
 
 There are 2 methods for running this code. Let us take a brief look at each one of them.
 
 ### Method 1 (On Cloud):
 
-Download the Python notebook and open it up inside Google Colaboratory. The datasets will be automatically mound via Google Drive.
+Download the Python notebook and open it up inside Google Colaboratory. The datasets will be mounted from your Google Drive account.
 
-Just run the notebook and wait for the classifiers to train themselves. The objects dataset section takes around 5 minutes whereas the flowers dataset section takes around 50 minutes for training. Trained classifiers are also saved and dumped in a file with JobLib. You can use them for prospective image classification tasks on similar datasets.
+Just run the notebook and wait for the models to train themselves. Make sure to run only that model's block which you intend to train. These models take around 1 hour to run a single epoch on the AffectNet dataset. During training, each epoch is saved in checkpoints and the best performing model is also dumped in Google Drive at the end.
 
 ### Method 2 (On Device):
 
 Clone this repository to your local machine with the following command:</br>
-<pre>git clone https://github.com/athar-usama/bovw.git</pre>
+<pre>git clone https://github.com/athar-usama/affectnet.git</pre>
 
 Install Python and Jupyter Notebook. You can download them from the official websites:
 #### Python: https://www.python.org/downloads/
 #### Jupyter Notebook: https://jupyter.org/install
 
-Install OpenCV and scikit-learn libraries using pip:</br>
-<pre>pip install opencv-python scikit-learn</pre>
+Install OpenCV, PyTorch, Pandas, and scikit-learn libraries using pip:</br>
+<pre>pip install opencv-python pytorch pandas scikit-learn</pre>
+<pre>pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</pre>
 
 Launch Jupyter Notebook from the command line:</br>
 <pre>jupyter notebook</pre>
@@ -69,61 +73,36 @@ Open the .ipynb file in Jupyter Notebook and run the code.
 
 <a name="usage"></a>
 ## Usage Instructions
-The code is designed to work with two datasets: objects dataset and flowers dataset. Both of these datasets have already been uploaded on a publicly accessible Google Drive folder. That folder gets downloaded from inside the Google Colaboratory notebook. Therefore, there is no need to download it locally.
+The code is designed to work with the AffectNet dataset. However, the tar files for train and validation set as well as the test set must be present on a folder inside the Google Drive which is to be mounted. These folders will then be automatically extracted inside the notebook. Therefore, there is no need to download the dataset locally.
 
-All you need is to run the code and wait for the classifiers to be trained.
+All you need is to run the code and wait for the model to be trained.
 
 <a name="quant_res"></a>
 ## Quantitative Results
 
-### Objects Dataset
+### Categorical Metrics
+![categorical](https://user-images.githubusercontent.com/41828100/235882389-946c7fdd-1d90-413b-9d93-e9bf7081d186.jpg)
 
-#### SVM Confusion Matrix
-![cm_o_svm](https://user-images.githubusercontent.com/41828100/224597979-7bcf5950-34a2-4fcd-ad6f-67bdfa4eb2f3.png)
+### Continuous Domain Metrics
+![continuous](https://user-images.githubusercontent.com/41828100/235882481-9284e709-f342-4c40-a7a5-df08524ecb1c.jpg)
 
-#### SVM Class-Wise Results
-![obj_svm](https://user-images.githubusercontent.com/41828100/224598383-1dbdb29b-1166-4c87-8bc0-718e8a14b006.jpg)
+<a name="graphs"></a>
+## Training Graphs
 
-#### Random Forest Confusion Matrix
-![cm_o_rf](https://user-images.githubusercontent.com/41828100/224598055-f6220691-3829-428b-9bf5-2ce4ee4c8b1c.png)
+### Accuracy Curves
+![accuracy](https://user-images.githubusercontent.com/41828100/235883903-35d46db9-1a78-44c0-979d-9a0a8d4d2f39.png)
 
-#### Random Forest Class-Wise Results
-![obj_rf](https://user-images.githubusercontent.com/41828100/224598404-ae4cd296-3848-4687-a929-a6aaebdd4bcf.jpg)
-
-#### Model Accuracy
-![obj_acc](https://user-images.githubusercontent.com/41828100/224598501-72f07f72-8ad7-4088-a920-8c4580ef5ec8.jpg)
-
-### Flowers Dataset
-
-#### SVM Confusion Matrix
-![cm_f_svm](https://user-images.githubusercontent.com/41828100/224598592-59660663-185a-442a-a707-8582fc66814b.png)
-
-#### SVM Class-Wise Results
-![flow_svm](https://user-images.githubusercontent.com/41828100/224598730-269fa690-6704-4f91-ac1a-d722b979dd50.jpg)
-
-#### Random Forest Confusion Matrix
-![cm_f_rf](https://user-images.githubusercontent.com/41828100/224598601-dd41b78b-80de-4bce-9bfa-c0290c4cd242.png)
-
-#### Random Forest Class-Wise Results
-![flow_rf](https://user-images.githubusercontent.com/41828100/224598752-30b1bb35-900f-4db0-9cd9-5329ea233d71.jpg)
-
-#### Model Accuracy
-![flow_acc](https://user-images.githubusercontent.com/41828100/224598774-6551a5ac-a069-41aa-baf0-e973cd9e4109.jpg)
+### Loss Curves
+![loss](https://user-images.githubusercontent.com/41828100/235883932-4cb0fee9-a721-407c-ba42-aa5e5a92e079.png)
 
 <a name="vis_res"></a>
 ## Visual Results
 
-### Correctly Classified Object
-![cor_obj](https://user-images.githubusercontent.com/41828100/224599052-f8b9c44c-18c8-4734-a2f0-0ab2b4b5cfc4.jpg)
+### Correctly Classified Images
+![correct](https://user-images.githubusercontent.com/41828100/235882220-54723491-3dd6-4b61-b466-57eb8487a39f.png)
 
-### Incorrectly Classified Object
-![incor_obj](https://user-images.githubusercontent.com/41828100/224599073-d4b7c3bc-59e4-45cb-8236-301b8dd1f7bd.jpg)
-
-### Correctly Classified Flower
-![cor_flo](https://user-images.githubusercontent.com/41828100/224599088-1b4de0a1-d186-4d93-819b-0e76c0698ee7.jpg)
-
-### Incorrectly Classified Flower
-![incor_flo](https://user-images.githubusercontent.com/41828100/224599117-d3f13abc-669b-4d35-b95c-9f6df001ab52.jpg)
+### Incorrectly Classified Images
+![incorrect](https://user-images.githubusercontent.com/41828100/235882267-bfc4a5c2-80f7-4290-8edf-1af6382db181.png)
 
 <a name="auth"></a>
 ## Author
